@@ -12,26 +12,26 @@ from threading import Thread
 
 class signals(QObject):
     """Signals are used to transfer data or sync up serial commands. 
-    	for easy locating all signals should be placed in this class.
-    	To setup a signal:
-    		signal_name = Singal(object/tuple/type optional)
-    			the argument for Signal is only used for passing data.
-    		in the class emiting the signal
-    		@Slot() should be added to the emiting class 
-    		self.signal_name = signals()
-    		self.signal_name.emit(object optional)
-    		
-    		in your main gui class
-    		self.emiting_class.signal_name.connect(name of function to call)"""	
+        for easy locating all signals should be placed in this class.
+        To setup a signal:
+            signal_name = Singal(object/tuple/type optional)
+                the argument for Signal is only used for passing data.
+            in the class emiting the signal
+            @Slot() should be added to the emiting class 
+            self.signal_name = signals()
+            self.signal_name.emit(object optional)
+            
+            in your main gui class
+            self.emiting_class.signal_name.connect(name of function to call)"""	
     image = Signal(object)
 
 
 class PlotThread(QThread):
     def __init__(self,GUI):
-    	"""PlotThread adds a pyqtGraph to the GUI. 
-    	input the layout object which has the addWidget method. 
-    	The method runs on a seperate thread at the moment though run is called on
-    	its own."""
+        """PlotThread adds a pyqtGraph to the GUI. 
+        input the layout object which has the addWidget method. 
+        The method runs on a seperate thread at the moment though run is called on
+        its own."""
         QThread.__init__(self)
         self.GUI = GUI
         self.signal = signals()
@@ -50,8 +50,8 @@ class PlotThread(QThread):
 
    
     def run(self,image):
-	"""should be used with a signal. the connect would refer to the run method 
-	and include the image in the emit."""
+        """should be used with a signal. the connect would refer to the run method 
+        and include the image in the emit."""
         #setup flag
         self.stopped = False
 
@@ -61,7 +61,7 @@ class PlotThread(QThread):
 
 class camThread(QThread):
     def __init__(self):
-    """Activaltes camera and starts sending images with Signal.emit"""
+        """Activaltes camera and starts sending images with Signal.emit"""
         QThread.__init__(self)
         self.stopped = False
         self.signal = signals()
